@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+#Define custom User model
+AUTH_USER_MODEL = "karibu_backend.User"
 
 # Application definition
 CORS_ORIGIN_ALLOW_ALL = True
@@ -41,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework', # for Django REST Framework to work
     'rest_framework_simplejwt.token_blacklist', # for Django REST Framework token
-    'karibu', # newly created app
+    'karibu_backend', 
 ]
 
 MIDDLEWARE = [

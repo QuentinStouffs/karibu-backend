@@ -1,0 +1,10 @@
+POST /api/users/
+{
+	"id": "",
+	"username": "jose",
+	"last_name": "jojo",
+    "password": "superpassword",
+	"name": "jose",
+	"first_name": "josepf",
+	"email": "jojo@lasticot.com"
+}
