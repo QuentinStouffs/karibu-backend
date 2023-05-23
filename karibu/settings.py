@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework', # for Django REST Framework to work
     'rest_framework_simplejwt.token_blacklist', # for Django REST Framework token
     'karibu_backend', 
+    'artisan'
 ]
 
 MIDDLEWARE = [
