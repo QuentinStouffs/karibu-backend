@@ -1,0 +1,37 @@
+AIzaSyAiwlx4xMGNN2tlkyta46QY_bqFY33eNfI
+
+request=self.context['request']
+
+        user=request.data.get('user')
+        user=attempt_json_deserialize(user, except_type=str)
+        validated_data['user']=user
+
+        type=request.data.get('type')
+        type=attempt_json_deserialize(type, expect_type=list)
+        validated_data['type']=type
+
+        full_address=request.data.get('address') +" " + request.data.get('zipcode') + " " + request.data.get('city')
+        gmaps=googlemaps.Client(key='AIzaSyAiwlx4xMGNN2tlkyta46QY_bqFY33eNfI')
+        geocode_result=gmaps.geocode(full_address)
+        
+        print(geocode_result)
+
+        
+        return user
+µ
+
+
+
+
+POST /api/artisan 
+{
+	"id": "",
+	"name": "brasseriechezmoi",
+	"user": "2",
+	"address": "rue de lonzée 133",
+	"phone": "0476842077",
+	"website": "karibu.farm",
+	"zipcode": "5030",
+	"city": "gembloux",
+	"types": [10, 2]
+}

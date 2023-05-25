@@ -29,4 +29,5 @@ urlpatterns = [
           jwt_views.TokenRefreshView.as_view(), 
           name ='token_refresh'),
     path('', include('karibu_backend.urls')),
+    path('', include('artisan.urls')),
 ]
