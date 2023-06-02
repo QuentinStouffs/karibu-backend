@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -9,6 +9,7 @@ from rest_framework.decorators import api_view, permission_classes, authenticati
 from rest_framework import status
 from .ArtisanSerializer import *
 from .models import Artisan
+import sys
 
 @api_view(['GET', 'POST'])
 @permission_classes([])
@@ -28,12 +29,20 @@ def artisans_list(request):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET'])
+@permission_classes([])
+@authentication_classes([])
+def artisan_by_user(request, user): 
+    artisans = Artisan.objects.all().filter(user=user)
+    serializer = ArtisanSerializer(artisans, context={'request': request}, many=True)
+    return Response(serializer.data)
+
 @api_view(['PUT', 'DELETE'])
 @permission_classes([])
 @authentication_classes([])
-def artisan_details(request, pk):
+def artisan_details(request, id):
     try:
-        artisan = Artisan.objects.get(id=pk)
+        artisan = Artisan.objects.get(id=id)
     except Artisan.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -116,3 +125,26 @@ def get_artisans_by_address(request, radius):
         return Response(status=status.HTTP_404_NOT_FOUND)
     serializer = ArtisanSerializer(artisans, context={'request': request}, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([])
+@authentication_classes([])
+def types(request):
+    types = Type.objects.all()
+    serializer = TypeSerializer(types,  context={'request': request}, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([])
+@authentication_classes([])
+def geo(request): 
+    full_address=request.GET.get('address', '')
+    print("the address:" + full_address, file=sys.stderr)
+    gmaps=googlemaps.Client(key='AIzaSyBoaHIOTYN8Q6aXWWh955bgbTINRiP0CXM')
+    geocode_result=gmaps.geocode(full_address)
+    geo = {
+        "lat" : geocode_result[0]['geometry']['location']['lat'],
+        "lng" : geocode_result[0]['geometry']['location']['lng']
+    }
+    
+    return JsonResponse(geo)

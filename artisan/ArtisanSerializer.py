@@ -3,9 +3,8 @@ from django.contrib.auth.hashers import make_password
 from .models import Artisan, Type
 from .functions import attempt_json_deserialize
 from karibu_backend.models import User
-import json
+from karibu_backend.serializers import UserSerializer
 import googlemaps
-import sys
 
 class TypeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,9 +12,8 @@ class TypeSerializer(serializers.ModelSerializer):
         fields="__all__"
 class ArtisanSerializer(serializers.ModelSerializer):
     type=TypeSerializer(many=True, read_only=True)
-    user=serializers.SlugRelatedField(
-        read_only=True,
-        slug_field='name'
+    user=UserSerializer(
+        read_only=True
     )
     class Meta:
         model = Artisan 

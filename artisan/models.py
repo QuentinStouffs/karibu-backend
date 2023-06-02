@@ -10,7 +10,7 @@ class Artisan(models.Model):
     address=models.CharField(max_length=255)
     phone=models.CharField(max_length=255)
     website=models.CharField(max_length=255)
-    zipcode=models.IntegerField
+    zipcode=models.IntegerField(default=5030)
     city=models.CharField(max_length=255)
     longitude=models.CharField(max_length=255)
     latitude=models.CharField(max_length=255)

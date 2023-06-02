@@ -13,5 +13,17 @@ class UserSerializer(serializers.ModelSerializer):
         user = super().create(validated_data)
         user.set_password(password)
         user.save()
-        print('appelé')
         return user
+    
+class UserSerializerWOpassword(serializers.ModelSerializer):
+
+    class Meta:
+        model = User 
+        fields = ('id', 'name', 'username', 'last_name', 'first_name', 'email')
+
+    def create(self, validated_data):
+       
+        user = super().create(validated_data)
+        user.save()
+        return user
+    
