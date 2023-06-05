@@ -38,8 +38,6 @@ def artisan_by_user(request, user):
     return Response(serializer.data)
 
 @api_view(['PUT', 'DELETE'])
-@permission_classes([])
-@authentication_classes([])
 def artisan_details(request, id):
     try:
         artisan = Artisan.objects.get(id=id)
@@ -73,9 +71,9 @@ def artisan_details(request, id):
 @api_view(['GET'])
 @permission_classes([])
 @authentication_classes([])
-def artisan_detail(request, pk):
+def artisan_detail(request, id):
     try:
-        artisan = Artisan.objects.get(id=pk)
+        artisan = Artisan.objects.get(id=id)
     except Artisan.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     
