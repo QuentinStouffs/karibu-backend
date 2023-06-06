@@ -91,6 +91,8 @@ SIMPLE_JWT = {
      'BLACKLIST_AFTER_ROTATION': True
 }
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
