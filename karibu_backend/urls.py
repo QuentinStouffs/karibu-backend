@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
      path('home/', views.HomeView.as_view(), name ='home'),
-     path('logout/', views.LogoutView.as_view(), name ='logout'),
+     path('api/logout/', views.LogoutView.as_view(), name ='logout'),
      #Token management
     path('api/token/', 
           jwt_views.TokenObtainPairView.as_view(), 

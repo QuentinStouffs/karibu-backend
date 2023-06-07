@@ -10,6 +10,8 @@ from rest_framework.decorators import api_view, permission_classes, authenticati
 from rest_framework import status
 from .serializers import *
 from .models import User
+
+
 class HomeView(APIView):
      
    permission_classes = (IsAuthenticated, )
