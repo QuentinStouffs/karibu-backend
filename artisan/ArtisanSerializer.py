@@ -38,7 +38,7 @@ class ArtisanSerializerWOLatLon(serializers.ModelSerializer):
         validated_data['user']=User.objects.get(id=user)
         
         full_address=request.data.get('address') +" " + request.data.get('zipcode') + " " + request.data.get('city')
-        gmaps=googlemaps.Client(key='AIzaSyBoaHIOTYN8Q6aXWWh955bgbTINRiP0CXM')
+        gmaps=googlemaps.Client(key='GOOGLE_API_KEY')
         geocode_result=gmaps.geocode(full_address)
        
         validated_data['latitude']=geocode_result[0]['geometry']['location']['lat']
