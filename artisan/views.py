@@ -138,7 +138,7 @@ def types(request):
 def geo(request): 
     full_address=request.GET.get('address', '')
     print("the address:" + full_address, file=sys.stderr)
-    gmaps=googlemaps.Client(key='AIzaSyBoaHIOTYN8Q6aXWWh955bgbTINRiP0CXM')
+    gmaps=googlemaps.Client(key='Google_api_key')
     geocode_result=gmaps.geocode(full_address)
     geo = {
         "lat" : geocode_result[0]['geometry']['location']['lat'],
