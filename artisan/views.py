@@ -105,7 +105,7 @@ def get_artisans_by_radius(request, lat, long, radius):
 def get_artisans_by_address(request, radius):
     address = request.GET.get('address','')
 
-    gmaps=googlemaps.Client(key='AIzaSyBoaHIOTYN8Q6aXWWh955bgbTINRiP0CXM')
+    gmaps=googlemaps.Client(key='Google_api_key')
     geocode_result=gmaps.geocode(address)
     lat=geocode_result[0]['geometry']['location']['lat']
     long=geocode_result[0]['geometry']['location']['lng']
